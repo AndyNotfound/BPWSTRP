@@ -1,0 +1,28 @@
+version: '3'
+services:
+  strapi:
+    build: .
+    ports:
+      - "1337:1337"
+    environment:
+      DATABASE_CLIENT: sqlite
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: strapi
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
