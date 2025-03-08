@@ -49,6 +49,12 @@
     "slug": {
       "type": "string",
       "unique": true
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "travel_package"
     }
   }
 }
